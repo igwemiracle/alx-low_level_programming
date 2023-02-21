@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * main - Entry point
@@ -12,25 +11,15 @@
 int main(void)
 {
 
-	int letter;
+	_putchar('_');
+	_putchar('p');
+	_putchar('u');
+	_putchar('t');
+	_putchar('c');
+	_putchar('h');
+	_putchar('a');
+	_putchar('r');
 
-	letter = '_';
-	_putchar(letter);
-	letter = 'p';
-	_putchar(letter);
-	letter = 'u';
-	_putchar(letter);
-	letter = 't';
-	_putchar(letter);
-	letter = 'c';
-	_putchar(letter);
-	letter = 'h';
-	_putchar(letter);
-	letter = 'a';
-	_putchar(letter);
-	letter = 'r';
-	_putchar(letter);
-
-	putchar('\n');
+	_putchar('\n');
 	return (0);
 }
