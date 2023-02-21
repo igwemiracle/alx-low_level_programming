@@ -1,3 +1,4 @@
+#include "main.h"
 #include <stdio.h>
 
 /**
@@ -14,21 +15,21 @@ int main(void)
 	int letter;
 
 	letter = '_';
-	putchar(letter);
+	_putchar(letter);
 	letter = 'p';
-	putchar(letter);
+	_putchar(letter);
 	letter = 'u';
-	putchar(letter);
+	_putchar(letter);
 	letter = 't';
-	putchar(letter);
+	_putchar(letter);
 	letter = 'c';
-	putchar(letter);
+	_putchar(letter);
 	letter = 'h';
-	putchar(letter);
+	_putchar(letter);
 	letter = 'a';
-	putchar(letter);
+	_putchar(letter);
 	letter = 'r';
-	putchar(letter);
+	_putchar(letter);
 
 	putchar('\n');
 	return (0);
