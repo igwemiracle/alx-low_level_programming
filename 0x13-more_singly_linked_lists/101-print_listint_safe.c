@@ -1,47 +1,57 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
- * print_listint_safe - Prints a listint_t linked list.
- * @head: Pointer to the head of the linked list.
+ * find_listint_loop_pl - finds a loop in a linked list
  *
- * Return: The number of nodes in the list.
+ * @head: linked list to search
+ *
+ * Return: address of node where loop starts/returns, NULL if no loop
  */
-
-size_t print_listint_safe(const listint_t *head)
+listint_t *find_listint_loop_pl(listint_t *head)
 {
-	size_t count = 0;
-	const listint_t *slow, *fast;
+	listint_t *pointer, *end_node;
 
 	if (head == NULL)
-	exit(98);
+		return (NULL);
 
-	slow = head;
-	fast = head->next;
-
-	while (slow != NULL && fast != NULL && fast->next != NULL)
+	for (end_node = head->next; end_node != NULL; end_node = end_node->next)
 	{
-		printf("[%p] %d\n", (void *)slow, slow->n);
-		count++;
+		if (end_node == end_node->next)
+			return (end_node);
+		for (pointer = head; pointer != end_node; pointer = pointer->next)
+			if (pointer == end_node->next)
+				return (end_node->next);
+	}
+	return (NULL);
+}
 
-		slow = slow->next;
-		fast = fast->next->next;
+/**
+ * print_listint_safe - prints a linked list, even if it
+ * has a loop
+ *
+ * @head: head of list to print
+ *
+ * Return: number of nodes printed
+ */
+size_t print_listint_safe(const listint_t *head)
+{
+	size_t length = 0;
+	int loop;
+	listint_t *loop_node;
 
-		if (slow == fast)
-		{
-			printf("[%p] %d\n", (void *)slow, slow->n);
-			count++;
-			break;
-		}
+	loop_node = find_listint_loop_pl((listint_t *) head);
+
+	for (length = 0, loop = 1; (head != loop_node || loop) && head != NULL; length++)
+	{
+		printf("[%p] %d\n", (void *) head, head->n);
+		if (head == loop_node)
+			loop = 0;
+		head = head->next;
 	}
 
-	while (slow != NULL)
-	{
-		printf("[%p] %d\n", (void *)slow, slow->n);
-		count++;
-		slow = slow->next;
-	}
-
-	return (count);
+	if (loop_node != NULL)
+		printf("-> [%p] %d\n", (void *) head, head->n);
+	return (length);
 }
